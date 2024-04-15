@@ -2,12 +2,12 @@ services:
   web:
     build:
       context: ./services/api
-    command: gunicorn main:app --bind 0.0.0.0:5000 -w 4 -k uvicorn.workers.UvicornWorker
-    expose:
-      - 5000
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.fastapi.rule=Host(`fastapi.localhost`)"
+      command: gunicorn main:app --bind 0.0.0.0:5000 -w 4 -k uvicorn.workers.UvicornWorker
+      expose:
+        - 5000
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.fastapi.rule=Host(`fastapi.localhost`)"
   traefik:
     image: traefik:v2.2
     ports:
